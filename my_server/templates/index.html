@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Rock Paper Royale</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{{url_for('static', filename='app.js')}}"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/15374ab708.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <section id="starter">
+            <h1>Enter a username:</h1>
+            <br />
+            <div>
+                <input type="text" id="user-enter">
+                <button id="enter"><b>Enter</b></button>
+            </div>
+        </section>
+        <section id="main-container">
+            <div id="middle-circle">
+                
+            </div>
+            <div id="timer-div"><b id="timer">60</b><p id="timer-text">Waiting for players.</p></div>
+            <div id="hand-picker">
+                <div class="hand rock"><i class="far fa-hand-rock fa-9x"></i></div>
+                <div class="hand paper"><i class="far fa-hand-paper fa-9x"></i></div>
+                <div class="hand scissors"><i class="far fa-hand-scissors fa-9x"></i></div>
+            </div>
+        </section>
+        
+    </body>
+</html>

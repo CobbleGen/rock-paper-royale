@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: roboto;
+}
+
+body {
+    background-image: linear-gradient(rgb(123, 255, 222), rgb(25, 255, 198));
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#starter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+
+    h1 {
+        font-size: 3rem;
+        display: block;
+    }
+    div {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input {
+            height: 40px;
+            width: 20rem;
+            padding: 10px;
+            padding-left: 30px;
+            border-radius: 20px;
+            border: 0px;
+            margin-right: 20px;
+            font-size: 2rem;
+            outline: none;
+        }
+        button {
+            background-color: rgb(0, 204, 0);
+            border-radius: 20px;
+            padding: 10px;
+            font-size: 2rem;
+            border: 3px transparent solid;
+            transition: all 0.3s ease;
+            outline: none;
+            &:hover {
+                color: white;
+                border-color: white;
+                cursor: pointer;
+            }
+        }
+    }
+    
+}
+
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+#timer-div {
+    position: absolute;
+    text-align: center;
+    #timer {
+        font-size: 5rem;
+    }
+    #timer-text {
+        font-size: 2.5rem;
+    }
+}
+
+#middle-circle {
+    background-color: transparent;
+    border: rgba(0, 0, 0, 0.527) 10px dashed;
+    border-radius: 50%;
+    height: 700px;
+    width: 700px;
+    position: relative;
+    .outer-card {
+        left: calc(50% - 60px);
+        top: calc(50% - 60px);
+        width: 120px;
+        height: 120px;
+        position: absolute;
+        text-align: center;
+        font-size: 2rem;
+        .rot-buffer {
+            width: 100%;
+            height: 100%;
+        }
+        .inner-card {
+
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            b {
+                margin-top: 300px;
+                padding-top: 100px;
+            }
+    
+            .card, .backside {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                backface-visibility: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: darkcyan 5px solid;
+                border-radius: 5%;
+                box-sizing: border-box;
+                transition: border-color 0.3s ease;
+            }
+    
+            .card {
+                background-color: rgb(0, 197, 197);
+                transform: rotateY(180deg);
+            }
+    
+            .backside {
+                background-color: rgb(85, 85, 233);
+            }
+        }
+    }   
+}
+
+#hand-picker {
+    position: absolute;
+    background-image: linear-gradient(rgba(25, 29, 255, 0.219), rgb(25, 151, 255));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 300px 300px 0px 0px;
+    width: 60%;
+    height: 400px;
+    bottom: 0;
+
+    .hand {
+        margin: 40px;
+        transition: all 0.3 ease;
+        &:hover {
+            color: lightgray;
+            cursor: pointer;
+        }
+    }
+}

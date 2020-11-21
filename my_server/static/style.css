@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: roboto;
+}
+
+body {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#7bffde), to(#19ffc6));
+  background-image: linear-gradient(#7bffde, #19ffc6);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#starter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+#starter h1 {
+  font-size: 3rem;
+  display: block;
+}
+
+#starter div {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#starter div input {
+  height: 40px;
+  width: 20rem;
+  padding: 10px;
+  padding-left: 30px;
+  border-radius: 20px;
+  border: 0px;
+  margin-right: 20px;
+  font-size: 2rem;
+  outline: none;
+}
+
+#starter div button {
+  background-color: #00cc00;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 2rem;
+  border: 3px transparent solid;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+#starter div button:hover {
+  color: white;
+  border-color: white;
+  cursor: pointer;
+}
+
+#main-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+#timer-div {
+  position: absolute;
+  text-align: center;
+}
+
+#timer-div #timer {
+  font-size: 5rem;
+}
+
+#timer-div #timer-text {
+  font-size: 2.5rem;
+}
+
+#middle-circle {
+  background-color: transparent;
+  border: rgba(0, 0, 0, 0.527) 10px dashed;
+  border-radius: 50%;
+  height: 700px;
+  width: 700px;
+  position: relative;
+}
+
+#middle-circle .outer-card {
+  left: calc(50% - 60px);
+  top: calc(50% - 60px);
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  text-align: center;
+  font-size: 2rem;
+}
+
+#middle-circle .outer-card .rot-buffer {
+  width: 100%;
+  height: 100%;
+}
+
+#middle-circle .outer-card .inner-card {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 0.8s;
+  transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+#middle-circle .outer-card .inner-card b {
+  margin-top: 300px;
+  padding-top: 100px;
+}
+
+#middle-circle .outer-card .inner-card .card, #middle-circle .outer-card .inner-card .backside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: darkcyan 5px solid;
+  border-radius: 5%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease;
+}
+
+#middle-circle .outer-card .inner-card .card {
+  background-color: #00c5c5;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+#middle-circle .outer-card .inner-card .backside {
+  background-color: #5555e9;
+}
+
+#hand-picker {
+  position: absolute;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(25, 29, 255, 0.219)), to(#1997ff));
+  background-image: linear-gradient(rgba(25, 29, 255, 0.219), #1997ff);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 300px 300px 0px 0px;
+  width: 60%;
+  height: 400px;
+  bottom: 0;
+}
+
+#hand-picker .hand {
+  margin: 40px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+}
+
+#hand-picker .hand:hover {
+  color: lightgray;
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */
