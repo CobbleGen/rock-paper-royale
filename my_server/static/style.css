@@ -167,6 +167,24 @@ body {
   transition: border-color 0.3s ease;
 }
 
+#middle-circle .outer-card .inner-card .winner {
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  border-color: #00fa00;
+}
+
+#middle-circle .outer-card .inner-card .loser {
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  border-color: #fa2500;
+}
+
+#middle-circle .outer-card .inner-card .tie {
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  border-color: #f6fa00;
+}
+
 #middle-circle .outer-card .inner-card .card {
   background-color: #00c5c5;
   -webkit-transform: rotateY(180deg);
@@ -205,5 +223,16 @@ body {
 #hand-picker .hand:hover {
   color: lightgray;
   cursor: pointer;
+}
+
+#announce {
+  position: absolute;
+  width: 400px;
+  top: 0;
+  padding: 20px;
+}
+
+#announce h1 {
+  font-size: 2rem;
 }
 /*# sourceMappingURL=style.css.map */

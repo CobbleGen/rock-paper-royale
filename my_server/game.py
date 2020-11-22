@@ -5,12 +5,13 @@ roster =  {}
 current_players = {}
 round_state = 0
 current_timer = 0
+winner = ''
 
 print("Starting Game.py")
 
 def addPlayer(player):
-    #TODO: Make sure you can only join on roundstate 0
-    current_players[player['uid']] = None
+    if round_state == 0 or round_state == 1:
+        current_players[player['uid']] = None
     roster[player['uid']] = {
         'uid'       : player['uid'],
         'name'      : player['name'],
@@ -18,13 +19,24 @@ def addPlayer(player):
     }
 
 def handChosen(uid, chosen):
-    if round_state == 2:
+    if round_state == 2 and uid in current_players.keys():
         current_players[uid] = chosen
         return True
     return False
 
 def getGameState(uid):
-    roster[uid]['last-time'] = current_timer
+    if uid in roster.keys():
+        roster[uid]['last-time'] = current_timer
+    else:
+        return 'crash'
+    if round_state == 3:
+        return {
+            'round_state'   : round_state,
+            'timer'         : current_timer,
+            'roster'        : roster,
+            'curr_players'  : current_players,
+            'winner'        : winner
+        }
     return {
         'round_state'   : round_state,
         'timer'         : current_timer,
@@ -32,31 +44,89 @@ def getGameState(uid):
         'curr_players'  : list(current_players.keys())
     }
 
+def checkRoundOutcome():
+    global current_players
+    hands = list(current_players.values())
+    counts = {
+        'rock'      : hands.count('rock'),
+        'scissors'  : hands.count('scissors'),
+        'paper'     : hands.count('paper')
+    }
+    if counts['rock'] == counts['scissors'] and counts['rock'] == counts['paper']:
+        return 'tie'
+    minHand = {'def' : 99999}
+    for key in counts.keys():
+        if counts[key] < list(minHand.values())[0] and counts[key] != 0:
+            minHand = {key : counts[key]}
+        elif counts[key] == list(minHand.values())[0]:
+            minHand[key] = counts[key]
+    if len(minHand.keys()) < 2:
+        return list(minHand.keys())[0]
+    if findLoser(list(minHand.keys())[0]) == list(minHand.keys())[1]:
+        return list(minHand.keys())[0]
+    else:
+        return list(minHand.keys())[1]
+
+def findLoser(hand):
+    if hand == 'rock':
+        return 'scissors'
+    if hand == 'paper':
+        return 'rock'
+    if hand == 'scissors':
+        return 'paper'
+    return 'error'
+
+def eliminateLosers(winner):
+    loser = findLoser(winner)
+    amount = 0
+    for key, value in current_players.copy().items():
+        if value == loser or value == None:
+            amount += 1
+            del current_players[key]
+    return amount
+
 def countTimer():
     global current_timer
     global round_state
-    global current_timer
+    global winner
+    global current_players
+    #If less than 2 players, wait for more players
     if len(current_players) < 2:
         round_state = 0
         current_timer = 30
     else:
         if round_state == 0:
             round_state = 1
+        #When timer hits zero, change round state
         if current_timer <= 0:
             if round_state == 0:
                 current_timer = 30
             elif round_state == 1:
+                #Start the game from lobby
                 current_timer = 15
                 round_state = 2
             elif round_state == 2:
+                #Everyone has picked a hand to throw, now check who won
                 round_state = 3
                 current_timer = 10
+                winner = checkRoundOutcome()
+                print(winner)
             elif round_state == 3:
-                pass
+                #Eliminate losers, either start new round or announce winner of game
+                eliminated = eliminateLosers(winner)
+                print(f'{eliminated} players eliminated.')
+                if len(current_players) < 2:
+                    current_players = {x: None for x in list(roster.keys())}
+                    round_state = 1
+                    current_timer = 60
+                else:  
+                    current_players = {x: None for x in current_players}
+                    round_state = 2
+                    current_timer = 15
                 
         else:
             current_timer -= 1
-        #print(f'Time: {current_timer}')
+    #Every 5 seconds, eliminate AFK people (people who have not sent a request for 5 seconds)
     if current_timer % 5 == 0:
         poplist = []
         for key in roster.keys():

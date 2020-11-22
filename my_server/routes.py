@@ -25,6 +25,8 @@ def createConnection():
 @app.route('/_get_game_state')
 def getGameState():
     state = game.getGameState(request.args['uid'])
+    if state == 'crash':
+        return render_template('index.html')
     return json.dumps(state)
 
 @app.route('/_chose_hand', methods=['POST', 'GET'])
