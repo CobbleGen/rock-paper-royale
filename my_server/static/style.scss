@@ -53,8 +53,7 @@ body {
                 cursor: pointer;
             }
         }
-    }
-    
+    } 
 }
 
 #main-container {
@@ -135,7 +134,7 @@ body {
             }
     
             .card {
-                background-color: rgb(0, 197, 197);
+                background-color: rgb(0, 145, 145);
                 transform: rotateY(180deg);
             }
     
@@ -174,5 +173,74 @@ body {
     padding: 20px;
     h1 {
         font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #middle-circle {
+        height: 300px;
+        width: 300px;
+        .outer-card {
+            left: calc(50% - 35px);
+            top: calc(50% - 35px);
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            text-align: center;
+            font-size: 2rem;
+        }
+    }
+
+    #hand-picker {
+        width: 90%;
+        height: 300px;
+    
+        .hand {
+            margin: 20px;
+            transition: all 0.3 ease;
+
+            i {
+                font-size: 3em;
+            }
+
+            &:hover {
+                color: lightgray;
+                cursor: pointer;
+            }
+        }
+    }
+
+    #timer-div {
+        #timer {
+            font-size: 3rem;
+        }
+        #timer-text {
+            font-size: 1rem;
+        }
+    }
+
+    #starter {
+        h1 {
+            font-size: 2.5rem;
+            display: block;
+        }
+        div {
+            flex-direction: column;
+            input {
+                height: 30px;
+                width: 80%;
+                padding: 10px;
+                padding-left: 20px;
+                border-radius: 15px;
+                margin-right: 10px;
+                font-size: 1.5rem;
+            }
+            button {
+                margin: 10px;
+                border-radius: 20px;
+                padding: 10px;
+                font-size: 2rem;
+            }
+        } 
     }
 }

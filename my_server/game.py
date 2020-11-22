@@ -26,7 +26,7 @@ def handChosen(uid, chosen):
 
 def getGameState(uid):
     if uid in roster.keys():
-        roster[uid]['last-time'] = current_timer
+        roster[uid]['last-time'] = time.time()
     else:
         return 'crash'
     if round_state == 3:
@@ -118,23 +118,22 @@ def countTimer():
                 if len(current_players) < 2:
                     current_players = {x: None for x in list(roster.keys())}
                     round_state = 1
-                    current_timer = 60
+                    current_timer = 30
                 else:  
                     current_players = {x: None for x in current_players}
                     round_state = 2
                     current_timer = 15
-                
         else:
             current_timer -= 1
+            print("Time: " + str(current_timer))
     #Every 5 seconds, eliminate AFK people (people who have not sent a request for 5 seconds)
-    if current_timer % 5 == 0:
-        poplist = []
-        for key in roster.keys():
-            if roster[key]['last-time'] > current_timer+5:
-                poplist.append(key)
-        for key in poplist:
-            roster.pop(key)
-            del current_players[key]
+    if current_timer % 5 == 2:
+        #TODO: Folk blir inte längre kickade av någon anledning
+        for key in roster.copy().keys():
+            if roster[key]['last-time'] < time.time()-5:
+                roster.pop(key)
+                del current_players[key]
+                print(key + " got kicked for inactivity.")
     Timer(1, countTimer).start()
 
 Timer(1, countTimer).start()

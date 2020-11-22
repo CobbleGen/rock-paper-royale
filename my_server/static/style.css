@@ -186,7 +186,7 @@ body {
 }
 
 #middle-circle .outer-card .inner-card .card {
-  background-color: #00c5c5;
+  background-color: #009191;
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
@@ -234,5 +234,68 @@ body {
 
 #announce h1 {
   font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  #middle-circle {
+    height: 300px;
+    width: 300px;
+  }
+  #middle-circle .outer-card {
+    left: calc(50% - 35px);
+    top: calc(50% - 35px);
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    text-align: center;
+    font-size: 2rem;
+  }
+  #hand-picker {
+    width: 90%;
+    height: 300px;
+  }
+  #hand-picker .hand {
+    margin: 20px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+  }
+  #hand-picker .hand i {
+    font-size: 3em;
+  }
+  #hand-picker .hand:hover {
+    color: lightgray;
+    cursor: pointer;
+  }
+  #timer-div #timer {
+    font-size: 3rem;
+  }
+  #timer-div #timer-text {
+    font-size: 1rem;
+  }
+  #starter h1 {
+    font-size: 2.5rem;
+    display: block;
+  }
+  #starter div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #starter div input {
+    height: 30px;
+    width: 80%;
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 15px;
+    margin-right: 10px;
+    font-size: 1.5rem;
+  }
+  #starter div button {
+    margin: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 2rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */

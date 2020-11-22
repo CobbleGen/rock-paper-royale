@@ -37,6 +37,9 @@ $(document).ready(function () {
 
     function updatePlayers(response, hardReset) {
         let currPlayers = response["curr_players"];
+        const transAmount = $("#middle-circle").width()/2;
+        let iconMult = 3;
+        if (transAmount < 250) {iconMult = 2;}
         if (arraysMatch(currPlayers, activePlayers) && !hardReset) {
         } else {
             activePlayers = currPlayers;
@@ -48,13 +51,13 @@ $(document).ready(function () {
                     <div class="outer-card">
                         <div class="rot-buffer">
                             <div class="inner-card" style="transform: rotateY(0deg);">
-                                <div class="card"><i class="far fa-3x"></i></div>
-                                <div class="backside"><i class="fas fa-question fa-3x"></i></div>
+                                <div class="card"><i class="far fa-${iconMult}x"></i></div>
+                                <div class="backside"><i class="fas fa-question fa-${iconMult}x"></i></div>
                             </div>
                             <b>${player["name"]}</b>
                         </div>
                     </div>
-                    `).appendTo("#middle-circle").css("transform", `rotate(${degreeIncrements*index}deg) translateX(350px)`)
+                    `).appendTo("#middle-circle").css("transform", `rotate(${degreeIncrements*index}deg) translateX(${transAmount}px)`)
                     .children(".rot-buffer").css("transform", `rotate(-${degreeIncrements*index}deg)`);
             }
         }
@@ -87,7 +90,7 @@ $(document).ready(function () {
                 } else if (e[1] == loser || e[1] == null) {
                     extra = "loser";
                 }
-                $(children[i]).find(".card").addClass(extra).children("i").attr("class", "far fa-3x fa-hand-" + e[1]);
+                $(children[i]).find(".card").addClass(extra).children("i").addClass("far fa-hand-" +e[1]);
                 $(children[i]).find(".inner-card").css("transform", "rotateY(180deg)");
             }
         }
@@ -118,7 +121,7 @@ $(document).ready(function () {
             },
             error: function (status) {
                 console.log(status);
-                setTimeout(fetchInfo, 2000);
+                //setTimeout(fetchInfo, 2000);
             }
         });   
     }
