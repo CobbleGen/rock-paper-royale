@@ -115,7 +115,10 @@ $(document).ready(function () {
                     revealPlayers(response['curr_players'], response["winner"]);
                     updateTimer(parseInt(response["timer"]), response["round_state"], response["winner"]);
                 }
-                
+            },
+            error: function (status) {
+                console.log(status);
+                setTimeout(fetchInfo, 2000);
             }
         });   
     }
