@@ -103,12 +103,12 @@ def countTimer():
                 current_timer = 30
             elif round_state == 1:
                 #Start the game from lobby
-                current_timer = 15
+                current_timer = 10
                 round_state = 2
             elif round_state == 2:
                 #Everyone has picked a hand to throw, now check who won
                 round_state = 3
-                current_timer = 10
+                current_timer = 5
                 winner = checkRoundOutcome()
                 print(winner)
             elif round_state == 3:
@@ -118,22 +118,24 @@ def countTimer():
                 if len(current_players) < 2:
                     current_players = {x: None for x in list(roster.keys())}
                     round_state = 1
-                    current_timer = 30
+                    current_timer = 20
                 else:  
                     current_players = {x: None for x in current_players}
                     round_state = 2
-                    current_timer = 15
+                    current_timer = 10
         else:
             current_timer -= 1
             print("Time: " + str(current_timer))
+    Timer(1, countTimer).start()
     #Every 5 seconds, eliminate AFK people (people who have not sent a request for 5 seconds)
     if current_timer % 5 == 2:
         #TODO: Folk blir inte längre kickade av någon anledning
         for key in roster.copy().keys():
             if roster[key]['last-time'] < time.time()-5:
                 roster.pop(key)
-                del current_players[key]
+                if key in current_players.keys():
+                    del current_players[key]
                 print(key + " got kicked for inactivity.")
-    Timer(1, countTimer).start()
+    
 
 Timer(1, countTimer).start()

@@ -134,7 +134,11 @@ $(document).ready(function () {
         }
         if ($("#timer").text() != time) {
             if (state != 0) {
-                setTimeout(() => $("#timer").html((time-1)), 1000);
+                setTimeout(() => {
+                    if(time-1 >= 0) {
+                        $("#timer").html((time-1));
+                    }
+                }, 1000);
                 if (state == 1) {
                     $("#timer-text").text("Starting....");
                 } else if(state == 2 && $("#timer-text").text() != "Choose what to throw") {
